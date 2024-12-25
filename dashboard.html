@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Doctors Cares</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #f4f4f4;
+        }
+        .dashboard {
+            padding: 2rem;
+            padding-top: 100px; /* Ensure content is below the navbar */
+        }
+        .dashboard-header {
+            display: flex;
+            justify-content: center; /* Center the header content */
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        .dashboard-header h1 {
+            font-size: 2.5rem;
+            color: var(--blue);
+        }
+        .dashboard-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        .dashboard-card {
+            background: white;
+            border-radius: .5rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            flex: 1 1 calc(33.333% - 2rem);
+            text-align: center;
+        }
+        .dashboard-card h2 {
+            font-size: 2rem;
+            color: var(--blue);
+            margin-bottom: 1rem;
+        }
+        .dashboard-card p {
+            font-size: 1.5rem;
+            color: var(--black);
+        }
+    </style>
+</head>
+<body>
+    <!-- header navbar section start  -->
+    <header>
+        <!-- logo name  -->
+        <a href="index.html" class="logo"><span>D</span>octors <span>C</span>are</a>
+
+        <!-- navbar link  -->
+        <nav class="navbar">
+            <ul id="nav-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="doctor.html">Doctor</a></li>
+                <li><a href="review.html">Review</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+        </nav>
+        <div class="auth-wrapper">
+            <a href="login.html" class="auth-link auth-login">Login</a>
+            <a href="signup.html" class="auth-link auth-signup">Signup</a>
+        </div>
+        <div id="user-initials" style="display: none; width: 40px; height: 40px; border-radius: 50%; background-color: #4285f4; color: white; align-items: center; justify-content: center; font-size: 1.2em; font-weight: bold; margin-left: 10px; cursor: pointer;" onclick="toggleLogoutMenu()"></div>
+        <div id="logout-menu" style="display: none; position: absolute; top: 60px; right: 10px; background: white; border: 1px solid #ccc; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); width: 150px;">
+            <button onclick="logout()" style="padding: 10px 20px; width: 100%; border: none; background: none; cursor: pointer;">Logout</button>
+        </div>
+
+        <div class="fas fa-bars"></div>
+    </header>
+    <!-- header navbar section end  -->
+
+    <section class="dashboard">
+        <div class="dashboard-header">
+            <h1>Welcome to Your Dashboard</h1>
+        </div>
+        <div class="dashboard-content">
+            <div class="dashboard-card">
+                <h2>Appointments</h2>
+                <p>Manage your appointments</p>
+            </div>
+            <div class="dashboard-card">
+                <h2>Patients</h2>
+                <p>View patient records</p>
+            </div>
+            <div class="dashboard-card">
+                <h2>Doctors</h2>
+                <p>Manage doctor schedules</p>
+            </div>
+            <div class="dashboard-card">
+                <h2>Reviews</h2>
+                <p>Read patient reviews</p>
+            </div>
+            <div class="dashboard-card">
+                <h2>Contact</h2>
+                <p>Contact support</p>
+            </div>
+            <div class="dashboard-card">
+                <h2>Blog</h2>
+                <p>Read our latest blog posts</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer section start  -->
+    <section class="footer">
+        <div class="box">
+            <h2 class="logo"><span>D</span>octors <span>C</span>ares</h2>
+        </div>
+        <div class="box">
+            <h2 class="logo"><span>S</span>hare</h2>
+            <a href="#">facebook</a>
+            <a href="#">twitter</a>
+            <a href="#">instagram</a>
+            <a href="#">pinterest</a>
+        </div>
+        <div class="box">
+            <h2 class="logo"><span>L</span>inks</h2>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="doctor.html">Doctor</a>
+            <a href="review.html">Review</a>
+            <a href="contact.html">Contact</a>
+            <a href="blog.html">Blog</a>
+        </div>
+        <h1 class="credit">created by <span>Govind and group</span> all right reserved.</h1>
+    </section>
+    <!-- footer section end  -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const initial = localStorage.getItem('initial');
+            if (initial) {
+                const userInitialsDiv = document.getElementById('user-initials');
+                userInitialsDiv.textContent = initial;
+                userInitialsDiv.style.display = 'flex';
+                document.querySelector('.auth-wrapper').style.display = 'none';
+            }
+        });
+
+        function toggleLogoutMenu() {
+            const logoutMenu = document.getElementById('logout-menu');
+            if (logoutMenu.style.display === 'none' || logoutMenu.style.display === '') {
+                logoutMenu.style.display = 'block';
+            } else {
+                logoutMenu.style.display = 'none';
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('firstName');
+            localStorage.removeItem('lastName');
+            localStorage.removeItem('initial');
+            window.location.href = 'login.html';
+        }
+
+        document.addEventListener('click', function(event) {
+            const logoutMenu = document.getElementById('logout-menu');
+            const userInitialsDiv = document.getElementById('user-initials');
+            if (!userInitialsDiv.contains(event.target) && !logoutMenu.contains(event.target)) {
+                logoutMenu.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

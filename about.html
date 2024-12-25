@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Responsive Hospital Website Design Tutorial</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: white;
+        }
+        .about {
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- header navbar section start  -->
+    <header>
+        <!-- logo name  -->
+        <a href="index.html" class="logo"><span>D</span>octors <span>C</span>are</a>
+
+        <!-- navbar link  -->
+        <nav class="navbar">
+            <ul id="nav-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="doctor.html">Doctor</a></li>
+                <li><a href="review.html">Review</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+        </nav>
+        <div class="auth-wrapper">
+            <a href="login.html" class="auth-link auth-login">Login</a>
+            <a href="signup.html" class="auth-link auth-signup">Signup</a>
+        </div>
+        <div id="user-initials" style="display: none; width: 40px; height: 40px; border-radius: 50%; background-color: #4285f4; color: white; align-items: center; justify-content: center; font-size: 1.2em; font-weight: bold; margin-left: 10px; cursor: pointer;" onclick="toggleLogoutMenu()"></div>
+        <div id="logout-menu" style="display: none; position: absolute; top: 60px; right: 10px; background: white; border: 1px solid #ccc; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); width: 150px;">
+            <button onclick="logout()" style="padding: 10px 20px; width: 100%; border: none; background: none; cursor: pointer;">Logout</button>
+        </div>
+
+        <div class="fas fa-bars"></div>
+    </header>
+    <!-- header navbar section end  -->
+
+    <section id="about" class="about" style="padding-top: 80px;">
+
+        <h1 class="heading">about our facility</h1>
+        <h3 class="title">learn and explore our facility</h3>
+
+        <div class="box-container">
+
+            <!-- start here  -->
+            <div class="box">
+                <!-- about images  -->
+                <div class="images">
+                    <img src="about-1.png" alt="">
+                </div>
+
+                <!-- about heading & text  -->
+                <div class="content">
+                    <h3>ambulance services</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab necessitatibus omnis unde dolore suscipit magnam officia. Maxime explicabo qui distinctio?</p>
+                    <a href="#"><button class="button">learn more</button></a>
+                </div>
+            </div>
+            <!-- end here  -->
+
+
+            <!-- start here  -->
+            <div class="box">
+                <!-- about images  -->
+                <div class="images">
+                    <img src="about-2.png" alt="">
+                </div>
+
+                <!-- about heading & text  -->
+                <div class="content">
+                    <h3>emergency rooms</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab necessitatibus omnis unde dolore suscipit magnam officia. Maxime explicabo qui distinctio?</p>
+                    <a href="#"><button class="button">learn more</button></a>
+                </div>
+            </div>
+            <!-- end here  -->
+
+
+            <!-- start here  -->
+            <div class="box">
+                <!-- about images  -->
+                <div class="images">
+                    <img src="about-3.png" alt="">
+                </div>
+
+                <!-- about heading & text  -->
+                <div class="content">
+                    <h3>free check-ups</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab necessitatibus omnis unde dolore suscipit magnam officia. Maxime explicabo qui distinctio?</p>
+                    <a href="#"><button class="button">learn more</button></a>
+                </div>
+            </div>
+            <!-- end here  -->
+        </div>
+    </section>
+
+     <!-- footer section start  -->
+     <section class="footer">
+        <div class="box">
+            <h2 class="logo"><span>D</span>octors <span>C</span>ares</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam laboriosam quisquam facere pariatur ratione porro et vero dolore accusamus id?</p>
+        </div>
+        <div class="box">
+            <h2 class="logo"><span>S</span>hare</h2>
+            <a href="#">facebook</a>
+            <a href="#">twitter</a>
+            <a href="#">instagram</a>
+            <a href="#">pinterest</a>
+        </div>
+        <div class="box">
+            <h2 class="logo"><span>L</span>inks</h2>
+            <a href="#">home</a>
+            <a href="#">about</a>
+            <a href="#">Doctor</a>
+            <a href="#">Review</a>
+            <a href="#">contact</a>
+            <a href="#">blog</a>
+        </div>
+        <h1 class="credit">created by <span>Govind and group</span> all right reserved.</h1>
+    </section>
+    <!-- footer section end  -->
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const initial = localStorage.getItem('initial');
+            if (initial) {
+                const userInitialsDiv = document.getElementById('user-initials');
+                userInitialsDiv.textContent = initial;
+                userInitialsDiv.style.display = 'flex';
+                document.querySelector('.auth-wrapper').style.display = 'none';
+            }
+        });
+
+        function toggleLogoutMenu() {
+            const logoutMenu = document.getElementById('logout-menu');
+            if (logoutMenu.style.display === 'none' || logoutMenu.style.display === '') {
+                logoutMenu.style.display = 'block';
+            } else {
+                logoutMenu.style.display = 'none';
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('firstName');
+            localStorage.removeItem('lastName');
+            localStorage.removeItem('initial');
+            window.location.href = 'login.html';
+        }
+
+        document.addEventListener('click', function(event) {
+            const logoutMenu = document.getElementById('logout-menu');
+            const userInitialsDiv = document.getElementById('user-initials');
+            if (!userInitialsDiv.contains(event.target) && !logoutMenu.contains(event.target)) {
+                logoutMenu.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+
+</html>

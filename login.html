@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Doctors Cares</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Ensure email and password fields remain as entered */
+        .normal-text {
+            text-transform: none;
+        }
+    </style>
+    <!-- Firebase initialization script -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyC8oLv0HqRioQij-_pD0ediiWJ2rQer0HM",
+            authDomain: "hospitalmanagement-ed460.firebaseapp.com",
+            projectId: "hospitalmanagement-ed460",
+            storageBucket: "hospitalmanagement-ed460.firebasestorage.app",
+            messagingSenderId: "836082265457",
+            appId: "1:836082265457:web:01390c83fc3cd9a9931ad0"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+    </script>
+</head>
+<body>
+    <section class="auth-section">
+        <h1>Login</h1>
+        <form id="loginForm" action="javascript:void(0);" method="POST">
+            <input type="email" class="normal-text" placeholder="Enter your email" name="email" id="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.(com|in)$">
+            <div style="position: relative;">
+                <input type="password" class="normal-text" placeholder="Enter your password" name="password" id="password" required style="width: 100%;">
+                <button type="button" id="toggle-password" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; background: none; border: none;" onclick="togglePassword()">
+                    <img src="eye.png" alt="Show Password" id="toggle-icon" style="width: 20px; height: 20px;">
+                </button>
+            </div>
+            <input type="submit" value="Login">
+        </form>
+        <p style="font-size: 1.3em;">Don't have an account? <a href="signup.html">Sign up here</a></p>
+    </section>
+    <script>
+        function togglePassword() {
+            var passwordField = document.getElementById("password");
+            var toggleIcon = document.getElementById("toggle-icon");
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                toggleIcon.src = "hide.png";
+            } else {
+                passwordField.type = "password";
+                toggleIcon.src = "eye.png";
+            }
+        }
+
+        // Login Form
+        const loginForm = document.getElementById('loginForm');
+        loginForm.addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent default form submission
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            firebase.auth().signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // User signed in successfully
+                    const user = userCredential.user;
+                    console.log('User signed in:', user);
+                    alert('Login successful! Redirecting to dashboard...');
+
+                    // Fetch user profile information from Firebase
+                    user.reload().then(() => {
+                        const displayName = user.displayName || `${email.split('@')[0]} User`;
+                        const [firstName] = displayName.split(' ');
+                        localStorage.setItem('firstName', firstName);
+                        const initial = firstName.charAt(0).toUpperCase();
+                        localStorage.setItem('initial', initial);
+                        localStorage.setItem('isLoggedIn', 'true'); // Store login state in local storage
+                        window.location.href = 'dashboard.html';
+                    });
+                })
+                .catch((error) => {
+                    // Handle errors
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.error('Error signing in:', errorCode, errorMessage);
+                    if (errorCode === 'auth/user-not-found') {
+                        alert('User not found. Redirecting to signup page...');
+                        window.location.href = 'signup.html';
+                    } else {
+                        alert(`Error: ${errorMessage}`);
+                    }
+                });
+        });
+    </script>
+</body>
+</html>

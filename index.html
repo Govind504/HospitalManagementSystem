@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Responsive Hospital Website Design Tutorial</title>
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="style.css">
+    <link href="path/to/auth-modal.css" rel="stylesheet">
+    <!-- Firebase initialization script -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyC8oLv0HqRioQij-_pD0ediiWJ2rQer0HM",
+            authDomain: "hospitalmanagement-ed460.firebaseapp.com",
+            projectId: "hospitalmanagement-ed460",
+            storageBucket: "hospitalmanagement-ed460.firebasestorage.app",
+            messagingSenderId: "836082265457",
+            appId: "1:836082265457:web:01390c83fc3cd9a9931ad0"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+    </script>
+</head>
+
+<body>
+    <!-- header navbar section start  -->
+    <header>
+        <!-- logo name  -->
+        <a href="index.html" class="logo"><span>D</span>octors <span>C</span>are</a>
+
+        <!-- navbar link  -->
+        <nav class="navbar">
+            <ul id="nav-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="doctor.html">Doctor</a></li>
+                <li><a href="review.html">Review</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+        </nav>
+        <div class="auth-wrapper">
+            <a href="login.html" class="auth-link auth-login">Login</a>
+            <a href="signup.html" class="auth-link auth-signup">Signup</a>
+        </div>
+        <div id="user-initials" style="display: none; width: 40px; height: 40px; border-radius: 50%; background-color: #4285f4; color: white; align-items: center; justify-content: center; font-size: 1.2em; font-weight: bold; margin-left: 10px; cursor: pointer;" onclick="toggleLogoutMenu()"></div>
+        <div id="logout-menu" style="display: none; position: absolute; top: 60px; right: 10px; background: white; border: 1px solid #ccc; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); width: 150px;">
+            <button onclick="window.location.href='dashboard.html'" style="padding: 10px 20px; width: 100%; border: none; background: none; cursor: pointer;">Dashboard</button>
+            <button onclick="logout()" style="padding: 10px 20px; width: 100%; border: none; background: none; cursor: pointer;">Logout</button>
+        </div>
+
+        <div class="fas fa-bars"></div>
+    </header>
+    <!-- header navbar section end  -->
+
+    <!-- home section start  -->
+    <section id="home" class="home">
+        <div class="row">
+            <!-- home images  -->
+            <div class="images">
+                <img src="home.png" alt="">
+            </div>
+
+            <!-- home heading  -->
+            <div class="content">
+                <h1><span>Stay</span> Safe, <span>Stay</span> Healthy.</h1>
+            </div>
+        </div>
+    </section>
+    <!-- home section end  -->
+
+    <!-- about section start  -->
+    <!-- about section end  -->
+    
+    <!-- card section start  -->
+    <!-- card section end  -->
+
+    <!-- review section start  -->
+    <!-- review section end  -->
+ 
+    <!-- contact section start  -->
+    
+    <!-- contact section end  -->
+
+    <!-- blog section start  -->
+    
+    <!-- blog section end  -->
+
+    <!-- footer section start  -->
+    <section class="footer">
+        <div class="box">
+            <h2 class="logo"><span>D</span>octors <span>C</span>ares</h2>
+        </div>
+
+        <div class="box">
+            <h2 class="logo"><span>S</span>hare</h2>
+            <a href="#">facebook</a>
+            <a href="#">twitter</a>
+            <a href="#">instagram</a>
+            <a href="#">pinterest</a>
+        </div>
+
+        <div class="box">
+            <h2 class="logo"><span>L</span>inks</h2>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="doctor.html">Doctor</a>
+            <a href="review.html">Review</a>
+            <a href="contact.html">Contact</a>
+            <a href="blog.html">Blog</a>
+        </div>
+
+        <h1 class="credit">created by <span>Govind and group</span> all right reserved.</h1>
+    </section>
+    <!-- footer section end  -->
+
+    <!-- jquery cdn link  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- custom js file link  -->
+    <script src="main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const initial = localStorage.getItem('initial');
+            if (initial) {
+                const userInitialsDiv = document.getElementById('user-initials');
+                userInitialsDiv.textContent = initial;
+                userInitialsDiv.style.display = 'flex';
+                document.querySelector('.auth-wrapper').style.display = 'none';
+            }
+        });
+
+        function toggleLogoutMenu() {
+            const logoutMenu = document.getElementById('logout-menu');
+            if (logoutMenu.style.display === 'none' || logoutMenu.style.display === '') {
+                logoutMenu.style.display = 'block';
+            } else {
+                logoutMenu.style.display = 'none';
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('firstName');
+            localStorage.removeItem('lastName');
+            localStorage.removeItem('initial');
+            window.location.href = 'login.html';
+        }
+
+        document.addEventListener('click', function(event) {
+            const logoutMenu = document.getElementById('logout-menu');
+            const userInitialsDiv = document.getElementById('user-initials');
+            if (!userInitialsDiv.contains(event.target) && !logoutMenu.contains(event.target)) {
+                logoutMenu.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+
+</html>

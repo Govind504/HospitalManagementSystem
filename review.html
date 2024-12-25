@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Responsive Hospital Website Design Tutorial</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- header navbar section start  -->
+    <header>
+        <!-- logo name  -->
+        <a href="index.html" class="logo"><span>D</span>octors <span>C</span>are</a>
+
+        <!-- navbar link  -->
+        <nav class="navbar">
+            <ul id="nav-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="doctor.html">Doctor</a></li>
+                <li><a href="review.html">Review</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+        </nav>
+        <div class="auth-wrapper">
+            <a href="login.html" class="auth-link auth-login">Login</a>
+            <a href="signup.html" class="auth-link auth-signup">Signup</a>
+        </div>
+        <div id="user-initials" style="display: none; width: 40px; height: 40px; border-radius: 50%; background-color: #4285f4; color: white; align-items: center; justify-content: center; font-size: 1.2em; font-weight: bold; margin-left: 10px; cursor: pointer;" onclick="toggleLogoutMenu()"></div>
+        <div id="logout-menu" style="display: none; position: absolute; top: 60px; right: 10px; background: white; border: 1px solid #ccc; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+            <button onclick="logout()" style="padding: 10px 20px; width: 100%; border: none; background: none; cursor: pointer;">Logout</button>
+        </div>
+
+        <div class="fas fa-bars"></div>
+    </header>
+    <!-- header navbar section end  -->
+
+    <section id="review" class="review py-5">
+        <div class="container">
+            <h1 class="heading text-center">Our Patient Reviews</h1>
+            <h3 class="title text-center mb-5">What patients say about us</h3>
+
+            <div class="box-container">
+                <!-- start here -->
+                <div class="box mb-4">
+                    <i class="fas fa-quote-left fa-2x text-primary mb-3"></i>
+                    <p>"Efficient and user-friendly, the hospital management page simplifies scheduling, patient records, and staff coordination for seamless healthcare operations."</p>
+                    <div class="images d-flex align-items-center mt-3">
+                        <img src="img-1.jpg" alt="" class="rounded-circle mr-3" style="width: 50px; height: 50px;">
+                        <div>
+                            <h5 class="mb-0">Alisha</h5>
+                        </div>
+                    </div>
+                </div>
+                <!-- end here -->
+
+                <!-- start here -->
+                <div class="box mb-4">
+                    <i class="fas fa-quote-left fa-2x text-primary mb-3"></i>
+                    <p>"Streamlined and intuitive, this page makes hospital management effortless and efficient."</p>
+                    <div class="images d-flex align-items-center mt-3">
+                        <img src="img-2.jpg" alt="" class="rounded-circle mr-3" style="width: 50px; height: 50px;">
+                        <div>
+                            <h5 class="mb-0">Mark</h5>
+                        </div>
+                    </div>
+                </div>
+                <!-- end here -->
+
+                <!-- start here -->
+                <div class="box mb-4">
+                    <i class="fas fa-quote-left fa-2x text-primary mb-3"></i>
+                    <p>"Simple, efficient, and perfect for managing hospital operations."</p>
+                    <div class="images d-flex align-items-center mt-3">
+                        <img src="img-3.jpg" alt="" class="rounded-circle mr-3" style="width: 50px; height: 50px;">
+                        <div>
+                            <h5 class="mb-0">John</h5>
+                        </div>
+                    </div>
+                </div>
+                <!-- end here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- footer section start  -->
+    <section class="footer">
+        <div class="box">
+            <h2 class="logo"><span>D</span>octors <span>C</span>ares</h2>
+        </div>
+        <div class="box">
+            <h2 class="logo"><span>S</span>hare</h2>
+            <a href="#">facebook</a>
+            <a href="#">twitter</a>
+            <a href="#">instagram</a>
+            <a href="#">pinterest</a>
+        </div>
+        <div class="box">
+            <h2 class="logo"><span>L</span>inks</h2>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="doctor.html">Doctor</a>
+            <a href="review.html">Review</a>
+            <a href="contact.html">Contact</a>
+            <a href="blog.html">Blog</a>
+        </div>
+        <h1 class="credit">created by <span>Govind and group</span> all right reserved.</h1>
+    </section>
+    <!-- footer section end  -->
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const initial = localStorage.getItem('initial');
+            if (initial) {
+                const userInitialsDiv = document.getElementById('user-initials');
+                userInitialsDiv.textContent = initial;
+                userInitialsDiv.style.display = 'flex';
+                document.querySelector('.auth-wrapper').style.display = 'none';
+            }
+        });
+
+        function toggleLogoutMenu() {
+            const logoutMenu = document.getElementById('logout-menu');
+            if (logoutMenu.style.display === 'none' || logoutMenu.style.display === '') {
+                logoutMenu.style.display = 'block';
+            } else {
+                logoutMenu.style.display = 'none';
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('firstName');
+            localStorage.removeItem('lastName');
+            localStorage.removeItem('initial');
+            window.location.href = 'login.html';
+        }
+
+        document.addEventListener('click', function(event) {
+            const logoutMenu = document.getElementById('logout-menu');
+            const userInitialsDiv = document.getElementById('user-initials');
+            if (!userInitialsDiv.contains(event.target) && !logoutMenu.contains(event.target)) {
+                logoutMenu.style.display = 'none';
+            }
+        });
+
+        // Navbar scroll behavior
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            header.classList.toggle('sticky', window.scrollY > 0);
+        });
+    </script>
+</body>
+
+</html>
